@@ -5,7 +5,7 @@ confirm=$2
 
 if [[ -n "$name" ]]; then
 
-    target=`find /home/ian/Videos/ -maxdepth 1 -type d -iname "*$name*"`
+    target=`find ~/Videos/ -maxdepth 1 -type d -iname "*$name*"`
 
     if [ "$target" = "" ]; then
 
