@@ -44,8 +44,9 @@ NOCOLOR='\033[0m'
 # putting it all together
 # echo -e `sed "$(( ( RANDOM % \`wc -l < ~/test.txt\` )  + 1 ))q;d" ~/test.txt ` | cowsay
 
-FORTUNE="/home/ian/test.txt"
-echo -e `sed "$(( ( RANDOM % \`wc -l < ${fortune}\` )  + 1 ))q;d" ${fortune} ` | cowsay
+FORTUNE="/home/xyz/test.txt"
+#TODO - echo -e messes with cowsay
+echo -e `sed "$(( ( RANDOM % \`wc -l < ${FORTUNE}\` )  + 1 ))q;d" ${FORTUNE} ` | cowsay -f suse #-W ${COLUMNS:-$(tput cols )}
 
 
 case $(echo `date '+%a'` | head -c 1) in
