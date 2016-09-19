@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TIPS=()
+TIPJAR=()
 
 # add your tips here v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v
 
