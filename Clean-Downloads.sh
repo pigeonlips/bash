@@ -1,5 +1,4 @@
 #!/bin/bash
-
 name=$1
 confirm=$2
 SOURCEDIR="$HOME/Downloads"

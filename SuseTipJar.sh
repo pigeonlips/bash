@@ -26,10 +26,25 @@ echo '$the_cow = <<"EOC";
 
 EOC' > $HOME/susetip.cow
 
+## get the number of lines in file
+#wc -l < ~/test.txt
+
+## pipe text from file with color to cowsay
+#echo -e "$(tail ~/test.txt )" | cowsay
+
+## get forth line from file
+#sed "4q;d" ~/test.txt
+
+## get a random number 1 through 10
+#$(( ( RANDOM % 10 )  + 1 ))
+
+# putting it all together
+# echo -e `sed "$(( ( RANDOM % \`wc -l < ~/test.txt\` )  + 1 ))q;d" ~/test.txt ` | cowsay
+
 # do the work, show a tip
 printf "%b " $TIP | cowthink -f $HOME/susetip.cow -W${COLUMNS:-$(tput cols)} | sed -e "s/(/ /g" -e "s/)//g" -e "s/_/-/g"
 
 # tidy up
+rm $HOME/susetip.cow
 unset TIP
 unset TIPS
-rm $HOME/susetip.cow
