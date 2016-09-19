@@ -44,10 +44,10 @@ NOCOLOR='\033[0m'
 # putting it all together
 # echo -e `sed "$(( ( RANDOM % \`wc -l < ~/test.txt\` )  + 1 ))q;d" ~/test.txt ` | cowsay
 
-FORTUNE="/home/xyz/test.txt"
+FORTUNE="$HOME/.bashfortune"
 #TODO - echo -e messes with cowsay
-echo -e `sed "$(( ( RANDOM % \`wc -l < ${FORTUNE}\` )  + 1 ))q;d" ${FORTUNE} ` | cowsay -f suse #-W ${COLUMNS:-$(tput cols )}
-
+printf "%b " `sed "$(( RANDOM % \`wc -l < ${FORTUNE}\`  + 1 ))q;d" ${FORTUNE}` | cowthink -f suse -W ${COLUMNS:-$(tput cols )} | sed -e "s/(/ /g" -e "s/)//g" #
+#echo -e `sed "$(( RANDOM % \`wc -l < ${FORTUNE}\`  + 1 ))q;d" ${FORTUNE} | sed "s/sudo/${GREEN}sudo/g"` | cowthink -f suse #-W ${COLUMNS:-$(tput cols )}
 
 case $(echo `date '+%a'` | head -c 1) in
   "T") # Tue, Thur,
@@ -77,5 +77,5 @@ case $(echo `date '+%a'` | head -c 1) in
 
 echo -e "${NOCOLOR}"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
-echo -e "What info ? ${LIGHTGREEN}journalctl -b${NOCOLOR} to show the journal since last boot. Run this ${LIGHTGREEN}sudo snapper create --description 'Uh-Oh'${NOCOLOR} before making any big changes ! You should run ${LIGHTGREEN}sudo zypper up${NOCOLOR} to refresh repos and update the system..."
+#echo -e "What info ? ${LIGHTGREEN}journalctl -b${NOCOLOR} to show the journal since last boot. Run this ${LIGHTGREEN}sudo snapper create --description 'Uh-Oh'${NOCOLOR} before making any big changes ! You should run ${LIGHTGREEN}sudo zypper up${NOCOLOR} to refresh repos and update the system..."
 echo ""
