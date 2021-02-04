@@ -74,8 +74,8 @@ for command in "${PRE_RUN_COMMANDS[@]}"; do
 done
 
 # get low disk space using df !
-printf "${YELLOW}~ [Running] df | grep -e \"[8-9][0-9]%\" -e \"100%\" | grep -v '/home'${NONE}\n" >> ${LOG_FILE}
-mapfile -t LOW_SPACE < <(df | grep -e "[8-9][0-9]%" -e "100%" | grep -v '/home')
+printf "~ [${YELLOW}Running${NONE}] df | grep -e \"[8-9][0-9]%%\" -e \"100%%\" | grep -v \"/home\" | grep -v \"/run/media\"\n" | tee --append ${LOG_FILE}
+mapfile -t LOW_SPACE < <(df | grep -e "[8-9][0-9]%" -e "100%" | grep -v "/home" | grep -v "/run/media" )
 
 if [ ${#LOW_SPACE[@]} -gt 0 ] ; then
   printf "~ [${RED}FAIL${NONE}] space is low on the following mounts ! ... \n" | tee --append ${LOG_FILE}
