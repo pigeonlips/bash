@@ -10,7 +10,9 @@ LOG_FILE="$(dirname $(readlink -f $0) )/logfile.txt"
 
 # build out the commands i want to run for cleaning up
 PRE_RUN_COMMANDS=()
-PRE_RUN_COMMANDS+=("journalctl --vacuum-time=1d >> ${LOG_FILE}") # 1> /dev/null
+PRE_RUN_COMMANDS+=("journalctl --vacuum-time=1d >> ${LOG_FILE}")
+PRE_RUN_COMMANDS+=("logrotate -vf /etc/logrotate.conf >> ${LOG_FILE}")
+PRE_RUN_COMMANDS+=("find /var/log -type f -name \"*.xz\" -delete >> ${LOG_FILE}")
 PRE_RUN_COMMANDS+=("rm /tmp/* -rf >> ${LOG_FILE}")
 PRE_RUN_COMMANDS+=("snapper cleanup number >> ${LOG_FILE}")
 PRE_RUN_COMMANDS+=("zypper --non-interactive purge-kernels >> ${LOG_FILE}")
