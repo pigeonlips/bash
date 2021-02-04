@@ -19,7 +19,7 @@ PRE_RUN_ERROR=false
 
 # build out the commands i want to run post successful maintance
 POST_RUN_COMMANDS=()
-#POST_RUN_COMMANDS+=("snapper create --description 'stable via maintance script' --cleanup-algorithm number >> ${LOG_FILE} 2>&1")
+POST_RUN_COMMANDS+=("snapper create --description 'stable via maintance script' --cleanup-algorithm number >> ${LOG_FILE} 2>&1")
 POST_RUN_COMMANDS+=("zypper --non-interactive dup >> ${LOG_FILE}")
 POST_RUN_COMMANDS+=("zypper --non-interactive clean >> ${LOG_FILE}")
 
