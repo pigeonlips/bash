@@ -19,9 +19,9 @@ PRE_RUN_COMMANDS+=("zypper --non-interactive purge-kernels >> ${LOG_FILE}")
 PRE_RUN_COMMANDS+=("zypper --non-interactive clean >> ${LOG_FILE}")
 PRE_RUN_ERROR=false
 
-# build out the commands i want to run post successful maintance
+# build out the commands i want to run post successful maintenance
 POST_RUN_COMMANDS=()
-POST_RUN_COMMANDS+=("snapper create --description 'stable via maintance script' --cleanup-algorithm number >> ${LOG_FILE} 2>&1")
+POST_RUN_COMMANDS+=("snapper create --description 'stable via maintenance script' --cleanup-algorithm number >> ${LOG_FILE} 2>&1")
 POST_RUN_COMMANDS+=("zypper --non-interactive dup >> ${LOG_FILE}")
 POST_RUN_COMMANDS+=("zypper --non-interactive clean >> ${LOG_FILE}")
 
@@ -59,7 +59,7 @@ for clean in "${cleaner[@]}"; do
 done
 eval ${LINE_BREAK} | tee --append ${LOG_FILE}
 
-# run our maintance commands !
+# run our maintenance commands !
 for command in "${PRE_RUN_COMMANDS[@]}"; do
 
   printf "${YELLOW}~ [Running] $command${NONE}\n" >> ${LOG_FILE}
@@ -82,7 +82,7 @@ if [ ${#LOW_SPACE[@]} -gt 0 ] ; then
   eval ${LINE_BREAK} | tee --append ${LOG_FILE}
   printf '%s\n' "${LOW_SPACE[@]}\n" | tee --append ${LOG_FILE}
   eval ${LINE_BREAK} | tee --append ${LOG_FILE}
-  printf "~ [ ${RED}Aye, Get ya broom, ya rag ~ and go on ya cell !${NONE} ] ~\n" | tee --append ${LOG_FILE}
+  printf "~ [ ${RED}AYE, GET YA BROOM, YA RAG ~ AN GO ON YA CELL !${NONE} ] ~\n" | tee --append ${LOG_FILE}
   PRE_RUN_ERROR=true
 else
   printf "\n~ [${GREEN}OK${NONE}] space is healthy on all mounts\n\n" | tee --append ${LOG_FILE}
